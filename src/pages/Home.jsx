@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <>
-      <section className="hero">
+      <section>
         <h1>Pro Paragon Software</h1>
         <p className="lead">
           An independent studio building thoughtful games for mobile, games about thinking
