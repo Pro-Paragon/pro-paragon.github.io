@@ -7,41 +7,15 @@
 import { copyFileSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { PAGE_METADATA } from '../src/pageMetadata.js';
 
 const shell = readFileSync('dist/index.html', 'utf8');
 copyFileSync('dist/index.html', 'dist/404.html');
 
-const { render, PRIVACY_TITLE, PRIVACY_DESCRIPTION } = await import(
-  pathToFileURL(join('dist-ssr', 'entry-server.js')).href
-);
+const { render } = await import(pathToFileURL(join('dist-ssr', 'entry-server.js')).href);
 
-// Keep in step with the routes in src/App.jsx. "/" goes last: it overwrites dist/index.html,
-// which every other page was built from.
-const pages = [
-  { url: '/blockcade/privacy/', title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION },
-  {
-    url: '/blockcade/',
-    title: 'Blockcade - Pro Paragon Software',
-    description: 'Blockcade, a sliding block puzzle game for Android and iOS by Pro Paragon Software LLC.',
-  },
-  {
-    url: '/support/',
-    title: 'Support - Pro Paragon Software',
-    description: 'Get help with Blockcade from Pro Paragon Software LLC.',
-  },
-  {
-    url: '/about/',
-    title: 'About - Pro Paragon Software',
-    description: 'Pro Paragon Software LLC is an independent game studio, makers of Blockcade.',
-  },
-  {
-    url: '/',
-    title: 'Pro Paragon Software',
-    description: 'Pro Paragon Software LLC is an independent game studio, makers of Blockcade.',
-  },
-];
-
-for (const { url, title, description } of pages) {
+// "/" goes last: it overwrites dist/index.html, which every other page was built from.
+for (const { url, title, description } of PAGE_METADATA) {
   const html = shell
     .replace('<div id="root"></div>', `<div id="root">${render(url)}</div>`)
     .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)

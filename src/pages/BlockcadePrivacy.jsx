@@ -1,19 +1,6 @@
-import { useEffect } from 'react';
-
 const EMAIL = 'support@proparagonsoftware.com';
 
-export const PRIVACY_TITLE = 'Blockcade Privacy Policy';
-export const PRIVACY_DESCRIPTION =
-  'How Blockcade, a puzzle game by Pro Paragon Software LLC, handles your information.';
-
 export default function BlockcadePrivacy() {
-  useEffect(() => {
-    document.title = PRIVACY_TITLE;
-    return () => {
-      document.title = 'Pro Paragon Software';
-    };
-  }, []);
-
   return (
     <div className="policy">
       <h1>Blockcade Privacy Policy</h1>

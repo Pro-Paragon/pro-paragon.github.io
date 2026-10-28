@@ -6,6 +6,7 @@ import Blockcade from './pages/Blockcade.jsx';
 import Support from './pages/Support.jsx';
 import BlockcadePrivacy from './pages/BlockcadePrivacy.jsx';
 import NotFound from './pages/NotFound.jsx';
+import { getPageMetadata } from './pageMetadata.js';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -60,6 +61,13 @@ export default function App() {
   const { pathname } = useLocation();
   // The store-facing privacy policy stands alone, with no navigation back into the site.
   const hideHeader = pathname.startsWith('/blockcade/privacy');
+
+  useEffect(() => {
+    const { title, description } = getPageMetadata(pathname);
+    document.title = title;
+    document.querySelector('meta[name="description"]')
+      ?.setAttribute('content', description);
+  }, [pathname]);
 
   return (
     <>
