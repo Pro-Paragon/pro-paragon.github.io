@@ -1,7 +1,9 @@
 // Post-build step for GitHub Pages:
 //  - 404.html is a copy of the app shell, so client-side routes work when opened directly.
-//  - Pages that other services fetch (the privacy policy) are pre-rendered to static HTML,
-//    so crawlers see the full text without running JavaScript.
+//  - Every page is pre-rendered to static HTML, so crawlers see the full text without running
+//    JavaScript. The stores need this: App Store Connect's support URL and the privacy policy
+//    must answer 200 with content, and a route served from 404.html answers 404 even though a
+//    browser shows the page.
 import { copyFileSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -13,8 +15,30 @@ const { render, PRIVACY_TITLE, PRIVACY_DESCRIPTION } = await import(
   pathToFileURL(join('dist-ssr', 'entry-server.js')).href
 );
 
+// Keep in step with the routes in src/App.jsx. "/" goes last: it overwrites dist/index.html,
+// which every other page was built from.
 const pages = [
   { url: '/blockcade/privacy/', title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION },
+  {
+    url: '/blockcade/',
+    title: 'Blockcade - Pro Paragon Software',
+    description: 'Blockcade, a sliding block puzzle game for Android and iOS by Pro Paragon Software LLC.',
+  },
+  {
+    url: '/support/',
+    title: 'Support - Pro Paragon Software',
+    description: 'Get help with Blockcade from Pro Paragon Software LLC.',
+  },
+  {
+    url: '/about/',
+    title: 'About - Pro Paragon Software',
+    description: 'Pro Paragon Software LLC is an independent game studio, makers of Blockcade.',
+  },
+  {
+    url: '/',
+    title: 'Pro Paragon Software',
+    description: 'Pro Paragon Software LLC is an independent game studio, makers of Blockcade.',
+  },
 ];
 
 for (const { url, title, description } of pages) {

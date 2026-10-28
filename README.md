@@ -7,8 +7,8 @@ Static React (Vite) site for Pro Paragon Software LLC, deployed to GitHub Pages 
 
 | Path | Becomes | Notes |
 |---|---|---|
-| `src/` | `/`, `/about`, `/blockcade`, `/support` | React pages (react-router). Unknown paths fall back to `404.html`, a copy of the app shell |
-| `public/blockcade/privacy/index.html` | `/blockcade/privacy/` | Static privacy policy. **Used by Play Console, App Store Connect and AdMob, so keep this URL stable** |
+| `src/pages/` | `/`, `/about/`, `/blockcade/`, `/support/` | React pages (react-router), pre-rendered to static HTML by `scripts/prerender.mjs`. Unknown paths fall back to `404.html`, a copy of the app shell. **A new route must be added to the prerender list too**, or it answers HTTP 404 |
+| `src/pages/BlockcadePrivacy.jsx` | `/blockcade/privacy/` | Privacy policy. **Used by Play Console, App Store Connect and AdMob, so keep this URL stable.** `/support/` is the App Store Connect support URL |
 | `public/app-ads.txt` | `/app-ads.txt` | Must stay at the site root for AdMob verification |
 | `public/CNAME` | — | Custom domain for GitHub Pages |
 
@@ -37,7 +37,8 @@ Requires Node 18+ (the workflow uses Node 22).
 
 ## Privacy policy notes
 
-The policy was drafted from what Blockcade does at the time of writing (Google Play Games, AdMob + UMP,
-no accounts, no purchases). Update it when purchases ship, when iOS ships (App Tracking Transparency),
-or when ad networks change, and have it reviewed by someone qualified. The policy says sensitive ad
+The policy was drafted from what Blockcade does at the time of writing (Google Play Games on Android,
+Game Center on iOS, AdMob + UMP, App Tracking Transparency, Firebase Crashlytics, no accounts, no
+purchases). Update it when purchases ship, when ad networks or SDKs change, and have it reviewed by
+someone qualified. The policy says sensitive ad
 categories are blocked. Make that true in AdMob → Blocking controls or delete the sentence.
