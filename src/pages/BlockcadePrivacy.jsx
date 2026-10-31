@@ -4,7 +4,7 @@ export default function BlockcadePrivacy() {
   return (
     <div className="policy">
       <h1>Blockcade Privacy Policy</h1>
-      <p className="meta">Pro Paragon Software LLC &middot; Effective 28-OCT-2026</p>
+      <p className="meta">Pro Paragon Software LLC &middot; Effective 31-OCT-2026</p>
 
       <div className="summary">
         <strong>The short version</strong>
@@ -14,6 +14,7 @@ export default function BlockcadePrivacy() {
           <li>Blockcade shows ads through Google AdMob. Google may use your device's advertising ID and similar information to show and measure those ads, and where the law requires it we ask for your consent first.</li>
           <li>If the game crashes, a crash report goes to Google Firebase Crashlytics so we can fix it. It does not include your name, account or player ID.</li>
           <li>Blockcade is not directed at children under 13.</li>
+          <li>To delete your data, see <a href="#delete-your-data">How to delete your Blockcade data</a>.</li>
         </ul>
       </div>
 
@@ -102,8 +103,23 @@ export default function BlockcadePrivacy() {
       <h2>9. What we don't collect</h2>
       <p>Blockcade does not ask you to create an account with us, and does not collect your name, email address, phone number, contacts, photos or precise location. It does not currently offer in-app purchases. If we add purchases in the future, payments will be handled by Google Play or the App Store, and we will update this policy.</p>
 
-      <h2>10. Keeping and deleting information</h2>
-      <p>Information on your device is kept until you uninstall the game. Your cloud save is kept in your Google account or Apple account until you delete it through Google or Apple. Crash reports are kept in Firebase for up to 90 days. Information collected by Google for advertising is kept according to Google's own policies. Because we do not run servers that store information about you, we generally have no copy to delete; if you have a request, contact us and we will help you with it or direct you to Google or Apple.</p>
+      <h2 id="delete-your-data">10. Keeping and deleting your data</h2>
+      <h3>How long it is kept</h3>
+      <ul>
+        <li><strong>Progress on your device</strong> is kept until you uninstall the game or reset it.</li>
+        <li><strong>Your cloud save</strong> is kept in your Google account or Apple account until you delete it.</li>
+        <li><strong>Crash reports</strong> are kept in Firebase for up to 90 days, then deleted automatically.</li>
+        <li><strong>Advertising information</strong> collected by Google is kept according to Google's own policies.</li>
+      </ul>
+      <h3>How to delete your Blockcade data</h3>
+      <p>We do not run servers that store information about you, so most of your data is deleted directly on your device or through Google or Apple:</p>
+      <ol>
+        <li><strong>Progress on this device:</strong> in the game, open <em>Settings &rarr; Reset Progress &rarr; Reset</em>, or uninstall Blockcade. If you are signed in, Reset Progress also resets the progress in your cloud save.</li>
+        <li><strong>Cloud save on Android:</strong> open the Google Play Games app and go to <em>Settings &rarr; Delete Play Games account &amp; data</em> (this deletes all your Play Games data, not only Blockcade's), or remove Blockcade's saved game from your Google account.</li>
+        <li><strong>Cloud save on iOS:</strong> go to <em>Settings &rarr; [your name] &rarr; iCloud &rarr; Manage Storage</em> and delete Blockcade's data.</li>
+        <li><strong>Advertising ID:</strong> on Android, <em>Settings &rarr; Google &rarr; Ads &rarr; Delete advertising ID</em> (or <em>Settings &rarr; Privacy &rarr; Ads</em>); on iOS, <em>Settings &rarr; Privacy &amp; Security &rarr; Tracking</em>.</li>
+        <li><strong>Anything else:</strong> email <a href={`mailto:${EMAIL}?subject=Blockcade%20data%20deletion%20request`}>{EMAIL}</a> with the subject "Blockcade data deletion request". We will reply within 30 days and either handle the request or tell you exactly how to complete it with Google or Apple.</li>
+      </ol>
 
       <h2>11. Your rights</h2>
       <p>Depending on where you live, you may have rights to access, correct, delete or limit the use of your personal information, and to object to or withdraw consent for certain processing. To exercise them, contact us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. You can also exercise many of these rights directly with Google through your Google account, or with Apple through your Apple Account.</p>

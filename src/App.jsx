@@ -9,10 +9,17 @@ import NotFound from './pages/NotFound.jsx';
 import { getPageMetadata } from './pageMetadata.js';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    // A #fragment (e.g. the privacy policy's #delete-your-data, given to Play Console as the
+    // data-deletion link) must land on its section, not the top of the page.
+    const target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (target) {
+      target.scrollIntoView();
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   return null;
 }
 
